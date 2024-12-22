@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ScrollToReanimated from '../components/ContinuousScrollBanner'
 import { height, paddingHasNotch, width } from '../utils/constants'
 import { ColorsScreen, ColorsText } from '../themes/colors'
@@ -7,6 +7,8 @@ import { typography } from '../styles/typography'
 import ButtonsW from '../components/Buttons/ButtonsW'
 import { NavigationProp } from '@react-navigation/native'
 import { ContantsNavigator } from '../navigation/ContantsNavigator'
+import { updateConfig } from '../redux/slices/configSlice'
+import { useDispatch } from 'react-redux'
 
 type DataCarousel = {
     id: string,
@@ -36,6 +38,7 @@ const dataCarousel: DataCarousel[] = [
     }
 ]
 const renderItem = () => {
+
     return (
         dataCarousel?.map((item: DataCarousel, index: number) => (
             <View
@@ -58,17 +61,20 @@ const renderItem = () => {
     )
 }
 
-interface WelcomeScreenProps {
+interface OnboardingScreenProps {
     navigation: NavigationProp<ContantsNavigator>
 }
 
-const WelcomeScreen = (props: WelcomeScreenProps) => {
-
+const OnBoardingScreen = (props: OnboardingScreenProps) => {
     const { navigation } = props;
-
-    const [activeIndex, setActiveIndex] = useState({ current: 0, previous: null })
+    const dispatch = useDispatch();
 
     const [onNext, setOnNext] = useState(0)
+    const [activeIndex, setActiveIndex] = useState({ current: 0, previous: null })
+
+    useEffect(() => {
+        console.log("===== Onboarding screen =====");
+    }, [])
 
     const swiperPagination = () => (
         dataCarousel.map((item: DataCarousel, index: number) => (
@@ -86,6 +92,7 @@ const WelcomeScreen = (props: WelcomeScreenProps) => {
 
     const buttonNext = () => {
         if (onNext > 1) {
+            dispatch(updateConfig({ hasCompletedOnboarding: true }))
             navigation.navigate(ContantsNavigator.LOGIN_SCREEN)
             return
         }
@@ -166,4 +173,4 @@ const styles = StyleSheet.create({
 
 
 
-export default WelcomeScreen
+export default OnBoardingScreen

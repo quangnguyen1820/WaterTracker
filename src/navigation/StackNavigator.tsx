@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screen/HomeScreen';
 import { ContantsNavigator } from './ContantsNavigator';
 import SplashScreen from '../screen/SplashScreen';
-import WelcomeScreen from '../screen/WelcomeScreen';
+import OnBoardingScreen from '../screen/OnboardingScreen';
 import LoginScreen from '../screen/auth/LoginScreen';
 
 const Stack = createStackNavigator();
@@ -50,7 +50,7 @@ const StackAuthNavigator = () => {
         >
             <Stack.Screen
                 name={ContantsNavigator.WELCOME_SCREEN}
-                component={WelcomeScreen}
+                component={OnBoardingScreen}
             />
             <Stack.Screen
                 name={ContantsNavigator.SPLASH_SCREEN}
