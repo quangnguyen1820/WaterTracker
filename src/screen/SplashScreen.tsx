@@ -1,26 +1,43 @@
-import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, ImageBackground, Image, StatusBar } from 'react-native'
+import React, { useEffect } from 'react'
 import { height, width } from '../utils/constants';
-import { ColorsScreen } from '../themes/colors';
+import { ColorsScreen, ColorsText } from '../themes/colors';
+import { typography } from '../styles/typography';
+import { ContantsNavigator } from '../navigation/ContantsNavigator';
+import { NavigationProp } from '@react-navigation/native';
 
-const SplashScreen = () => {
+interface SplashScreenProps {
+    navigation: NavigationProp<ContantsNavigator>
+}
+
+const SplashScreen = (props: SplashScreenProps) => {
+
+    const { navigation } = props
+
+    const title = 'Drops Water Tracker';
+    const content = `Stay hydrated and track your\ndaily water intake`;
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            navigation.navigate(ContantsNavigator.WELCOME_SCREEN)
+        }, 2000);
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [])
     return (
         <View style={styles.container}>
-            {/* <Image source={require('../assets/images/logo.png')}
-                style={{ width: width * 0.6, height: width * 0.5 }}
-            /> */}
+            <StatusBar
+                barStyle={'light-content'}
+                hidden={true}
+            />
             <ImageBackground
                 source={require('../assets/images/background.png')}
                 style={styles.backgroundImage}
             />
-
-            <View style={{ width: '100%', borderWidth: 1, alignItems: 'center' }}>
-                <Image
-                    source={require('../assets/images/logo.png')}
-                    style={styles.imageLogo}
-                />
-                <Text>Drops Water Tracker</Text>
-                <Text>Stay hydrated and track your daily water intake</Text>
+            <View style={styles.viewContent}>
+                <Text style={styles.textHeader}>{title}</Text>
+                <Text style={styles.textContent}>{content}</Text>
             </View>
         </View>
     )
@@ -42,8 +59,25 @@ const styles = StyleSheet.create({
     },
     imageLogo: {
         width: 140,
-        height: 160,
+        height: 150,
         marginBottom: 20
+    },
+    viewContent: {
+        width: '100%',
+        alignItems: 'center',
+        paddingTop: height * 0.21
+    },
+    textHeader: {
+        ...typography.titleBoldH1,
+        color: ColorsText.white,
+        letterSpacing: 0.7
+    },
+    textContent: {
+        ...typography.textRegular,
+        color: ColorsText.white,
+        letterSpacing: 0.7,
+        textAlign: 'center',
+        marginTop: 8
     }
 });
 
