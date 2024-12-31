@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native'
 import React from 'react'
 import { ColorsScreen, ColorsText } from '../../themes/colors';
 import { typography } from '../../styles/typography';
@@ -6,15 +6,16 @@ import { typography } from '../../styles/typography';
 interface ButtonsWProps {
     onPress: () => void
     title: string
+    style?: ViewStyle
 }
 
 const ButtonsW = (props: ButtonsWProps) => {
 
-    const { onPress, title } = props;
+    const { onPress, title, style } = props;
 
     return (
         <TouchableOpacity
-            style={styles.container}
+            style={[styles.container, { ...style }]}
             onPress={onPress}
         >
             <Text style={styles.textButton}>{title}</Text>
