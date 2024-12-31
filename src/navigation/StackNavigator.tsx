@@ -2,29 +2,40 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screen/HomeScreen';
 import { ContantsNavigator } from './ContantsNavigator';
-import SplashScreen from '../screen/SplashScreen';
+import { RootState } from '../redux/store';
+import LoginScreen from '../screen/auth/login/LoginScreen';
+import { useSelector } from 'react-redux';
 import OnBoardingScreen from '../screen/OnboardingScreen';
-import LoginScreen from '../screen/auth/LoginScreen';
+import SplashScreen from '../screen/SplashScreen';
 
 const Stack = createStackNavigator();
 const authStack = createStackNavigator();
 
 const StackNavigator = () => {
+    const isLoggedIn = useSelector((state: RootState) => state.config.isLoggedIn);
+
     return (
         <Stack.Navigator
-            initialRouteName={ContantsNavigator.AUTHENTICATION_STATE}
+            initialRouteName={isLoggedIn
+                ? ContantsNavigator.MAIN_STATE
+                : ContantsNavigator.AUTHENTICATION_STATE}
             screenOptions={{
                 headerShown: false
             }}
         >
-            <Stack.Screen
-                name={ContantsNavigator.MAIN_STATE}
-                component={StackMainNavigator}
-            />
-            <Stack.Screen
-                name={ContantsNavigator.AUTHENTICATION_STATE}
-                component={StackAuthNavigator}
-            />
+            {
+                isLoggedIn ? (
+                    <Stack.Screen
+                        name={ContantsNavigator.MAIN_STATE}
+                        component={StackMainNavigator}
+                    />
+
+                ) :
+                    <Stack.Screen
+                        name={ContantsNavigator.AUTHENTICATION_STATE}
+                        component={StackAuthNavigator}
+                    />
+            }
         </Stack.Navigator>
     );
 };
@@ -49,7 +60,7 @@ const StackAuthNavigator = () => {
             }}
         >
             <Stack.Screen
-                name={ContantsNavigator.WELCOME_SCREEN}
+                name={ContantsNavigator.ONBOARDING_SCREEN}
                 component={OnBoardingScreen}
             />
             <Stack.Screen

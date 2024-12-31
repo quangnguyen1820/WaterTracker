@@ -1,14 +1,28 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { takeLatest, call, all, put } from 'redux-saga/effects';
+import { takeLatest, call, all, put, select } from 'redux-saga/effects';
 import { initalConfig, updateConfig } from '../slices/configSlice';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ConfigState } from '../types';
 import { ContantsStorage } from '../../storage/ContantsStorage';
 
 function* handleUpdateConfig(action: PayloadAction<ConfigState>): Generator {
-    const { key, value } = action.payload;
     try {
-        yield call([AsyncStorage, 'setItem'], ContantsStorage.CONFIGURATION, JSON.stringify(action.payload))
+        const currentConfig: ConfigState = yield select((state: any) => state.config);
+
+        // Kết hợp state hiện tại và payload mới
+        const updatedConfig: ConfigState = {
+            ...currentConfig,
+            ...action.payload, // Override các giá trị mới
+        };
+
+        yield call(
+            [AsyncStorage, 'setItem'],
+            ContantsStorage.CONFIGURATION,
+            JSON.stringify(updatedConfig) // Lưu dưới dạng JSON
+        );
+
+        yield put(initalConfig(updatedConfig));
+
     } catch (error) {
         console.error('Error saving config:', error);
     }
@@ -16,13 +30,11 @@ function* handleUpdateConfig(action: PayloadAction<ConfigState>): Generator {
 
 function* handleInitialConfig(action: PayloadAction<ConfigState>): Generator {
     try {
-
-    } catch (error) {
         const configStoage = yield call([AsyncStorage, 'getItem'], ContantsStorage.CONFIGURATION)
         if (configStoage) {
-            yield put(initalConfig(configStoage));
+            yield put(initalConfig(JSON.parse(configStoage)));
         }
-    }
+    } catch (error) { }
 }
 
 function* watchAll() {

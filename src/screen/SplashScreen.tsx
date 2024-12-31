@@ -5,6 +5,9 @@ import { ColorsScreen, ColorsText } from '../themes/colors';
 import { typography } from '../styles/typography';
 import { ContantsNavigator } from '../navigation/ContantsNavigator';
 import { NavigationProp } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { initalConfig } from '../redux/slices/configSlice';
 
 interface SplashScreenProps {
     navigation: NavigationProp<ContantsNavigator>
@@ -13,18 +16,29 @@ interface SplashScreenProps {
 const SplashScreen = (props: SplashScreenProps) => {
 
     const { navigation } = props
+    const dispatch = useDispatch();
 
     const title = 'Drops Water Tracker';
     const content = `Stay hydrated and track your\ndaily water intake`;
 
+    const hasCompletedOnboarding = useSelector((state: RootState) => state.config.hasCompletedOnboarding);
+
+    useEffect(() => {
+        dispatch(initalConfig({}))
+    }, [])
+
     useEffect(() => {
         const timeout = setTimeout(() => {
-            navigation.navigate(ContantsNavigator.WELCOME_SCREEN)
+            if (hasCompletedOnboarding) {
+                navigation.navigate(ContantsNavigator.LOGIN_SCREEN)
+            } else {
+                navigation.navigate(ContantsNavigator.ONBOARDING_SCREEN)
+            }
         }, 2000);
         return () => {
             clearTimeout(timeout)
         }
-    }, [])
+    }, [hasCompletedOnboarding])
     return (
         <View style={styles.container}>
             <StatusBar

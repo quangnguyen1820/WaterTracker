@@ -7,17 +7,20 @@ const configSlice = createSlice({
     reducers: {
         updateConfig: (state, action: PayloadAction<ConfigState>) => {
             const payload = action.payload;
-
             if (!payload || typeof payload !== 'object') {
                 console.error('Invalid payload in updateConfig:', payload);
                 return;
             }
+
 
             const configPayload = Object.entries(payload).forEach(([key, value]) => {
                 if (key in state && value !== undefined) {
                     state[key as keyof ConfigState] = value as any;
                 }
             });
+
+
+
         },
         initalConfig: (state, action: PayloadAction<ConfigState>) => {
             return action.payload
