@@ -1,12 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../screen/HomeScreen';
+import HomeScreen from '@screens/home/HomeScreen';
 import { ContantsNavigator } from './ContantsNavigator';
 import { RootState } from '../redux/store';
-import LoginScreen from '../screen/auth/login/LoginScreen';
+import LoginScreen from '@screens/auth/login/LoginScreen';
 import { useSelector } from 'react-redux';
-import OnBoardingScreen from '../screen/OnboardingScreen';
-import SplashScreen from '../screen/SplashScreen';
+import OnBoardingScreen from '@screens/OnboardingScreen';
+import SplashScreen from '@screens/splash/SplashScreen';
+import RegisterScreen from '@screens/auth/register/RegisterScreen';
 
 const Stack = createStackNavigator();
 const authStack = createStackNavigator();
@@ -42,12 +43,19 @@ const StackNavigator = () => {
 
 const StackMainNavigator = () => {
     return (
-        <React.Fragment>
+
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
             <Stack.Screen
                 name={ContantsNavigator.HOME_SCREEN}
+                options={{ gestureEnabled: false }}
                 component={HomeScreen}
             />
-        </React.Fragment>
+        </Stack.Navigator>
+
     )
 }
 
@@ -69,7 +77,12 @@ const StackAuthNavigator = () => {
             />
             <authStack.Screen
                 name={ContantsNavigator.LOGIN_SCREEN}
+                options={{ gestureEnabled: false }}
                 component={LoginScreen}
+            />
+            <authStack.Screen
+                name={ContantsNavigator.REGISTER_SCREEN}
+                component={RegisterScreen}
             />
         </authStack.Navigator>
     );

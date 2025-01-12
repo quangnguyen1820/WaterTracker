@@ -12,7 +12,6 @@ const configSlice = createSlice({
                 return;
             }
 
-
             const configPayload = Object.entries(payload).forEach(([key, value]) => {
                 if (key in state && value !== undefined) {
                     state[key as keyof ConfigState] = value as any;

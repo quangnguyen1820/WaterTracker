@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { ColorsText, ColorView } from '@themes/colors';
 import { typography } from '@styles/typography';
-import { paddingHasNotch } from '@utils/constants';
+import { height, paddingHasNotch, width } from '@utils/constants';
+import { getSize } from './sizes';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     },
     termsText: {
         ...typography.textMsgRegular,
-        width: '88%',
+        width: width > 400 ? '88%' : '72%',
         textAlign: 'center',
         alignSelf: 'center',
         marginBottom: 6
@@ -37,28 +38,27 @@ const styles = StyleSheet.create({
     },
     socialContainer: {
         width: '100%',
-        paddingHorizontal: 16,
         flexDirection: 'row',
         justifyContent: 'center',
-        marginBottom: 40
+        marginBottom: getSize(40)
     },
     socialIcon: {
-        width: 28,
-        height: 28
+        width: height * 0.03005,
+        height: height * 0.03005
     },
     socialText: {
         ...typography.textRegular,
         color: ColorsText.grayHolder,
-        marginLeft: 12
+        marginLeft: getSize(12)
     },
     buttonSocialGoogle: {
         flexDirection: 'row',
         alignItems: 'center',
         borderWidth: 1,
-        paddingVertical: 12,
+        paddingVertical: height * 0.0129,
         paddingHorizontal: 18,
         borderRadius: 60,
-        marginRight: 16,
+        marginRight: getSize(16),
         borderColor: ColorView.buttonSocial
     },
     buttonSocial: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     orText: {
         ...typography.textRegular,
-        marginBottom: 24,
+        marginBottom: getSize(24),
         textAlign: 'center'
     },
     forgotText: {
@@ -80,15 +80,15 @@ const styles = StyleSheet.create({
         color: ColorsText.blue,
         textDecorationLine: 'underline',
         textAlign: 'center',
-        marginBottom: 46
+        marginBottom: getSize(46)
     },
     buttonLogin: {
-        marginBottom: 34
+        marginBottom: getSize(34)
     },
     viewRadioCheck: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: getSize(22),
         marginLeft: 24
     },
     textRemember: {
@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
         marginLeft: 8
     },
     viewInput: {
-        marginBottom: 20
+        marginBottom: getSize(22)
     },
     textDescribe: {
         ...typography.textRegular,
         color: ColorsText.grayDescibe,
-        marginBottom: 48
+        marginBottom: getSize(48)
     },
     textNameScreen: {
         ...typography.titleBoldH2,

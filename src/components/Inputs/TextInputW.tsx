@@ -4,6 +4,7 @@ import { ColorsInput, ColorsText } from '@themes/colors'
 import { SvgXml } from 'react-native-svg'
 import { svgIcon } from '@assets/svg'
 import { typography } from '@styles/typography'
+import { getSize } from '@styles/sizes'
 
 interface TextInputWProps {
     placeholder: string
@@ -44,7 +45,7 @@ const TextInputW = (props: TextInputWProps) => {
             ...style
         }]}>
             <View style={[styles.container, {
-                height: height || 60,
+                height: height || getSize(60),
                 borderWidth: isValid ? 1 : 0,
                 borderColor: isValid ? ColorsText.valid : 'transparent'
             }]}>
@@ -73,6 +74,7 @@ const TextInputW = (props: TextInputWProps) => {
                 {secureTextEntry &&
                     <IconButton
                         name={hidePassword ? 'eye-off' : 'eye'}
+                        size={getSize(24)}
                         style={styles.viewIconRight}
                         onPress={() => onShowPass && onShowPass()}
                     />
