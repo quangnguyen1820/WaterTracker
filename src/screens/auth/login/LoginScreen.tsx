@@ -1,7 +1,7 @@
 import svgApp from '@svg/svgApp';
 import { ColorIcon } from '@themes/colors';
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import ButtonsW from '@components/Buttons/ButtonsW';
 import TextInputW from '@components/Inputs/TextInputW';
@@ -14,7 +14,6 @@ import { ContantsNavigator } from '@navigation/ContantsNavigator';
 import { updateConfig } from '@redux/slices/configSlice';
 import { useDispatch } from 'react-redux';
 import TouchableFeedbackView from '@components/views/TouchableFeedbackView';
-import { height, width } from '@utils/constants';
 import { getSize } from '@styles/sizes';
 
 const LoginScreen = (props: LoginScreenProps) => {
@@ -150,14 +149,13 @@ const LoginScreen = (props: LoginScreenProps) => {
             }
         }
 
-
         if (hasInvalidField) return
 
         dispatch(updateConfig({ isLoggedIn: true }))
     }
 
     const handleForgotPassword = () => {
-
+        navigation.navigate(ContantsNavigator.FORGOT_PASSWORD_SCREEN)
     }
 
     const handleSignUp = () => {
