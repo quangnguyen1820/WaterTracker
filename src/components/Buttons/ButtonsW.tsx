@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native'
+import { Text, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native'
 import React from 'react'
-import { ColorsScreen, ColorsText } from '../../themes/colors';
+import { ColorsButton, ColorsScreen, ColorsText } from '../../themes/colors';
 import { typography } from '../../styles/typography';
 import { getSize } from '@styles/sizes';
 
@@ -8,16 +8,17 @@ interface ButtonsWProps {
     onPress: () => void
     title: string
     style?: ViewStyle,
-    disabled?: boolean
+    disabled?: boolean,
+    type?: 'second' | 'primary'
 }
 
 const ButtonsW = (props: ButtonsWProps) => {
 
-    const { onPress, title, style, disabled } = props;
+    const { onPress, title, style, disabled, type = 'primary' } = props;
 
     return (
         <TouchableOpacity
-            style={[styles.container, { ...style }]}
+            style={[type ? disabled ? styles.containerDisable : styles.containerPrimary : styles.containerSecod, { ...style }]}
             disabled={disabled}
             onPress={onPress}
         >
@@ -27,7 +28,23 @@ const ButtonsW = (props: ButtonsWProps) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    containerDisable: {
+        width: '100%',
+        height: getSize(60),
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: ColorsButton.disable
+    },
+    containerPrimary: {
+        width: '100%',
+        height: getSize(60),
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: ColorsScreen.background
+    },
+    containerSecod: {
         width: '100%',
         height: getSize(60),
         borderRadius: 8,
@@ -36,7 +53,7 @@ const styles = StyleSheet.create({
         backgroundColor: ColorsScreen.background
     },
     textButton: {
-        ...typography.textRegular,
+        ...typography.titleRegularH4,
         color: ColorsText.white
     }
 });

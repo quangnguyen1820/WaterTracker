@@ -19,6 +19,7 @@ const configSlice = createSlice({
             });
 
 
+            return configPayload
 
         },
         initalConfig: (state, action: PayloadAction<ConfigState>) => {
