@@ -26,6 +26,16 @@ export const typography = StyleSheet.create({
         fontSize: getFontSize(18, 20),
         color: ColorsText.blackMedium
     },
+    titleBoldH5: {
+        fontFamily: 'Prompt-Bold',
+        fontSize: getFontSize(16, 18),
+        color: ColorsText.blackMedium
+    },
+    titleRegularH4: {
+        fontFamily: 'Prompt-Regular',
+        fontSize: getFontSize(16, 18),
+        color: ColorsText.blackMedium
+    },
     titleRegularH5: {
         fontFamily: 'Prompt-Regular',
         fontSize: getFontSize(14, 16),

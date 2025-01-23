@@ -15,10 +15,12 @@ const sizes = {
     22: calculateSize(22, 0.0236),
     24: calculateSize(24, 0.0258),
     26: calculateSize(26, 0.0279),
+    30: calculateSize(30, 0.0322),
     34: calculateSize(34, 0.0365),
     40: calculateSize(40, 0.0429),
     46: calculateSize(46, 0.0494),
     48: calculateSize(48, 0.0515),
+    52: calculateSize(52, 0.0558),
     60: calculateSize(60, 0.0644),
 };
 

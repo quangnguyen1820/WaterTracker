@@ -8,6 +8,9 @@ import { useSelector } from 'react-redux';
 import OnBoardingScreen from '@screens/OnboardingScreen';
 import SplashScreen from '@screens/splash/SplashScreen';
 import RegisterScreen from '@screens/auth/register/RegisterScreen';
+import ForgotPasswordScreen from '@screens/auth/forgotPassword/ForgotPasswordScreen';
+import VertificationCodeScreen from '@screens/auth/register/VertificationCodeScreen';
+import VeritifiredSuccessScreen from '@screens/auth/vetifiredSuccess/VeritifiredSuccessScreen';
 
 const Stack = createStackNavigator();
 const authStack = createStackNavigator();
@@ -83,6 +86,19 @@ const StackAuthNavigator = () => {
             <authStack.Screen
                 name={ContantsNavigator.REGISTER_SCREEN}
                 component={RegisterScreen}
+            />
+            <authStack.Screen
+                name={ContantsNavigator.VERTIFICATION_CODE_SCREEN}
+                options={{ gestureEnabled: false }}
+                component={VertificationCodeScreen}
+            />
+            <authStack.Screen
+                name={ContantsNavigator.FORGOT_PASSWORD_SCREEN}
+                component={ForgotPasswordScreen}
+            />
+            <authStack.Screen
+                name={ContantsNavigator.VERIFIRED_SUCCESS_SCREEN}
+                component={VeritifiredSuccessScreen}
             />
         </authStack.Navigator>
     );

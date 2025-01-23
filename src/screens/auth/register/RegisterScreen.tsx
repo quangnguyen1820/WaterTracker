@@ -116,7 +116,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
     }
 
     const handleRegister = () => {
-
+        navigation.navigate(ContantsNavigator.VERTIFICATION_CODE_SCREEN)
     }
 
     const handleHasLogin = () => {

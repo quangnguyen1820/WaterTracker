@@ -20,9 +20,15 @@ export enum ColorsText {
     blue = '#0F80FD',
     grayHolder = '#575757',
     grayDescibe = '#8E8E8E',
-    valid = '#FF2424'
+    valid = '#FF2424',
+
 }
 
 export enum ColorsInput {
     input = '#F4F4F4',
+    border = '#CBCBCB'
+}
+
+export enum ColorsButton {
+    disable = '#DEDDDD'
 }
