@@ -21,11 +21,13 @@ interface TextInputWProps {
     onRight?: () => void
     isValid?: boolean
     messageValid?: string
+    onFocus?: () => void
+    onBlur?: () => void
 }
 
 const TextInputW = (props: TextInputWProps) => {
 
-    const { placeholder, onChangeText, secureTextEntry, height, hidePassword, leftIcon, rightIcon, value, style, onDismiss, onShowPass, onRight, isValid, messageValid } = props;
+    const { placeholder, onChangeText, secureTextEntry = false, height, hidePassword = false, leftIcon, rightIcon, value, style, onDismiss, onShowPass, onRight, isValid, messageValid, onFocus, onBlur } = props;
 
     const Icon = ({ name, size = 24, color }: { name: string; size?: number, color?: string }) => (
         <SvgXml xml={svgIcon({ name, size, color })} />
@@ -60,21 +62,24 @@ const TextInputW = (props: TextInputWProps) => {
                 <TextInput
                     placeholder={placeholder}
                     onChangeText={onChangeText}
-                    secureTextEntry={secureTextEntry}
+                    secureTextEntry={hidePassword}
                     style={styles.input}
                     value={value}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                 />
                 {value &&
                     <IconButton
                         name={'dismiss-input'}
+                        size={getSize(22)}
                         style={styles.viewIconRight}
                         onPress={() => onDismiss && onDismiss()}
                     />
                 }
                 {secureTextEntry &&
                     <IconButton
-                        name={hidePassword ? 'eye-off' : 'eye'}
-                        size={getSize(24)}
+                        name={hidePassword ? 'eye' : 'eye-off'}
+                        size={getSize(22)}
                         style={styles.viewIconRight}
                         onPress={() => onShowPass && onShowPass()}
                     />

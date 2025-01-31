@@ -1,6 +1,7 @@
 export enum ColorsScreen {
     background = '#5DCCFC',
-    grayLight = '#F2F2F2'
+    grayLight = '#F2F2F2',
+    backgroundHome = '#F4F8FB'
 }
 
 export enum ColorView {
@@ -21,6 +22,7 @@ export enum ColorsText {
     grayHolder = '#575757',
     grayDescibe = '#8E8E8E',
     valid = '#FF2424',
+    grayWelcome = '#90A5B4'
 
 }
 

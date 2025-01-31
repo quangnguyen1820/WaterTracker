@@ -15,6 +15,9 @@ export type ValidationRule = {
         required?: string;
         pattern?: string;
         minLength?: string;
+        hasUpperAndLower?: string,
+        hasSpecialChar?: string,
+        passwordDoNotMatch?: string
     };
 };
 

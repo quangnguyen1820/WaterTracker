@@ -1,4 +1,4 @@
-import svgApp from '@svg/svgApp';
+import svgApp from '@assets/svg/svgIcons';
 import { ColorIcon } from '@themes/colors';
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
@@ -25,7 +25,7 @@ const LoginScreen = (props: LoginScreenProps) => {
         value: '',
         isValid: false,
         msgValid: '',
-        showPassword: false
+        showPassword: true
     })
     const [email, setEmail] = useState<BaseInputState>({
         value: '',

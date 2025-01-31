@@ -16,7 +16,8 @@ module.exports = {
           '@navigation': './src/navigation',
           '@redux': './src/redux',
           '@constants': './src/constants',
-          '@screens': './src/screens'
+          '@screens': './src/screens',
+          '@types': './src/types'
         },
       },
     ],

@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import TouchableFeedbackView from '@components/views/TouchableFeedbackView'
 import styles from '@styles/VertificationCodeStyles'
@@ -6,17 +6,15 @@ import { SvgXml } from 'react-native-svg'
 import { svgIcon } from '@assets/svg'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { getSize } from '@styles/sizes'
-import GpayPinInput from '@components/Inputs/PinInput'
-import ButtonsW from '@components/Buttons/ButtonsW'
 import { ContantsNavigator } from '@navigation/ContantsNavigator'
 import { NavigationProp } from '@react-navigation/native'
 import ViewOTP from '@components/views/ViewOTP'
 
-interface VertificationCodeProps {
+interface OTPCodeForgotScreenProps {
     navigation: NavigationProp<ContantsNavigator>
 }
 
-const VertificationCodeScreen = (props: VertificationCodeProps) => {
+const OTPCodeForgotScreen = (props: OTPCodeForgotScreenProps) => {
 
     const { navigation } = props;
 
@@ -66,4 +64,4 @@ const VertificationCodeScreen = (props: VertificationCodeProps) => {
     )
 }
 
-export default VertificationCodeScreen
+export default OTPCodeForgotScreen

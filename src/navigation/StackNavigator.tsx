@@ -11,6 +11,8 @@ import RegisterScreen from '@screens/auth/register/RegisterScreen';
 import ForgotPasswordScreen from '@screens/auth/forgotPassword/ForgotPasswordScreen';
 import VertificationCodeScreen from '@screens/auth/register/VertificationCodeScreen';
 import VeritifiredSuccessScreen from '@screens/auth/vetifiredSuccess/VeritifiredSuccessScreen';
+import OTPCodeForgotScreen from '@screens/auth/forgotPassword/OTPCodeForgotScreen';
+import ResetPasswordScreen from '@screens/auth/forgotPassword/ResetPasswordScreen';
 
 const Stack = createStackNavigator();
 const authStack = createStackNavigator();
@@ -99,6 +101,14 @@ const StackAuthNavigator = () => {
             <authStack.Screen
                 name={ContantsNavigator.VERIFIRED_SUCCESS_SCREEN}
                 component={VeritifiredSuccessScreen}
+            />
+            <authStack.Screen
+                name={ContantsNavigator.OTP_CODE_FORGOT_SCREEN}
+                component={OTPCodeForgotScreen}
+            />
+            <authStack.Screen
+                name={ContantsNavigator.RESET_PASSWORD_SCREEN}
+                component={ResetPasswordScreen}
             />
         </authStack.Navigator>
     );

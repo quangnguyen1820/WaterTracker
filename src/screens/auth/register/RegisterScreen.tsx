@@ -24,7 +24,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
     }>(
         {
             email: { value: '', isValid: false, msgValid: '' },
-            password: { value: '', isValid: false, msgValid: '', showPassword: false },
+            password: { value: '', isValid: false, msgValid: '', showPassword: true },
             fullName: { value: '', isValid: false, msgValid: '' },
             phone: { value: '', isValid: false, msgValid: '' },
         }
@@ -125,7 +125,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
 
     const colorIcon = ColorIcon.icon
 
-    const isFormValid = Object.values(formState).every((field) => field.isValid);
+    const isFormValid = Object.values(formState).some((field) => field.value === '' || field.isValid);
 
     return (
         <TouchableFeedbackView>
@@ -139,7 +139,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
                     </Text>
                     <TextInputW
                         placeholder='Full name'
-                        onChangeText={(value: string) => handleInputChange('fullName', value)}
+                        onChangeText={(text: string) => handleInputChange('fullName', text)}
                         value={formState.fullName.value}
                         style={styles.viewInput}
                         leftIcon={{
@@ -153,7 +153,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
                     />
                     <TextInputW
                         placeholder='Email'
-                        onChangeText={(value: string) => handleInputChange('email', value)}
+                        onChangeText={(text: string) => handleInputChange('email', text)}
                         value={formState.email.value}
                         style={styles.viewInput}
                         leftIcon={{
@@ -167,7 +167,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
                     />
                     <TextInputW
                         placeholder='Phone'
-                        onChangeText={(value: string) => handleInputChange('phone', value)}
+                        onChangeText={(text: string) => handleInputChange('phone', text)}
                         value={formState.phone.value}
                         style={styles.viewInput}
                         leftIcon={{
@@ -181,13 +181,13 @@ const RegisterScreen = (props: RegisterScreenProps) => {
                     />
                     <TextInputW
                         placeholder='Password'
-                        secureTextEntry={true}
+                        secureTextEntry={formState.password.showPassword}
                         leftIcon={{
                             name: 'password',
                             color: colorIcon,
                             size: getSize(24)
                         }}
-                        onChangeText={(value: string) => handleInputChange('password', value)}
+                        onChangeText={(text: string) => handleInputChange('password', text)}
                         value={formState.password.value}
                         style={styles.viewInput}
                         onDismiss={() => handleInputChange('password', '')}
@@ -197,7 +197,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
                         hidePassword={formState.password.showPassword}
                     />
                     <ButtonsW
-                        disabled={!isFormValid}
+                        disabled={isFormValid}
                         onPress={handleRegister}
                         title={'Create Account'}
                         style={styles.buttonLogin}

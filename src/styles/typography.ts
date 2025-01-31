@@ -46,6 +46,11 @@ export const typography = StyleSheet.create({
         fontSize: getFontSize(14, 14),
         color: ColorsText.black
     },
+    textRegularMedium: {
+        fontFamily: 'Prompt-Medium',
+        fontSize: getFontSize(14, 14),
+        color: ColorsText.black
+    },
     textRegularBold: {
         fontFamily: 'Prompt-Bold',
         fontSize: getFontSize(14, 14),
@@ -55,5 +60,20 @@ export const typography = StyleSheet.create({
         fontFamily: 'Prompt-Regular',
         fontSize: getFontSize(12, 12),
         color: ColorsText.black
-    }
+    },
+    textTimeRegular: {
+        fontFamily: 'Prompt-Regular',
+        fontSize: getFontSize(12, 12),
+        color: ColorsText.black
+    },
+    textTimeMedium: {
+        fontFamily: 'Prompt-Medium',
+        fontSize: getFontSize(12, 12),
+        color: ColorsText.black
+    },
+    textTimeRegularBold: {
+        fontFamily: 'Prompt-Bold',
+        fontSize: getFontSize(12, 12),
+        color: ColorsText.black
+    },
 })
