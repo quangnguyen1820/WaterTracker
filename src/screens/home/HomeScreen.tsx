@@ -8,9 +8,10 @@ import { svgIcon } from '@assets/svg';
 import svgView from '@assets/svg/svgView';
 import { width } from '@utils/constants';
 import { ColorView } from '@themes/colors';
-import { User } from '@types/userTypes'
 import svgChart from '@assets/svg/svgChart';
 import ButtonsW from '@components/Buttons/ButtonsW';
+import NavBottom from '@components/NavBottom';
+import { User } from '../../types/userTypes';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const HomeScreen = () => {
     })
 
     useEffect(() => {
-        // dispatch(updateConfig({ isLoggedIn: false }))
+        // dispatch(updateConfig({ isLoggedIn: false, hasCompletedOnboarding: false }))
     }, [])
 
     useEffect(() => {
@@ -128,6 +129,7 @@ const HomeScreen = () => {
                     </View>
                 </ScrollView>
             </View>
+            <NavBottom />
         </SafeAreaView>
     )
 }
