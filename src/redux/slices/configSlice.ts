@@ -13,11 +13,11 @@ const configSlice = createSlice({
             }
 
             const configPayload = Object.entries(payload).forEach(([key, value]) => {
+
                 if (key in state && value !== undefined) {
                     state[key as keyof ConfigState] = value as any;
                 }
             });
-
 
             return configPayload
 

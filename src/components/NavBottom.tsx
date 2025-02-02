@@ -6,12 +6,22 @@ import { ContantsNavigator } from '@navigation/ContantsNavigator'
 import { SvgXml } from 'react-native-svg'
 import { svgIcon } from '@assets/svg'
 import { typography } from '@styles/typography'
+import { NavigationProp, useNavigation } from '@react-navigation/native'
 
 export default function NavBottom() {
 
+    const navigation = useNavigation<any>();
+
     const [selected, setSelected] = useState(1)
 
-    const buttons = [
+    type buttonType = {
+        id: number;
+        name: string;
+        icon: string;
+        route: string;
+    }
+
+    const buttons: buttonType[] = [
         {
             id: 1,
             name: 'Home',
@@ -22,7 +32,7 @@ export default function NavBottom() {
             id: 2,
             name: 'Analytics',
             icon: 'analytics',
-            route: ContantsNavigator.HOME_SCREEN
+            route: ContantsNavigator.ANALYSIS_SCREEN
         },
         {
             id: 3,
@@ -44,8 +54,11 @@ export default function NavBottom() {
         },
     ]
 
-    const handleSelectRoute = (id: number) => {
-        setSelected(id)
+    const handleSelectRoute = (button: buttonType) => {
+        setSelected(button.id)
+        if (button.route) {
+            navigation.navigate(button.route)
+        }
     }
 
     return (
@@ -56,7 +69,7 @@ export default function NavBottom() {
                         <TouchableOpacity
                             key={button.id}
                             style={styles.button}
-                            onPress={() => handleSelectRoute(button.id)}
+                            onPress={() => handleSelectRoute(button)}
                         >
                             {
                                 button.icon &&
@@ -78,7 +91,7 @@ export default function NavBottom() {
                 }
                 <TouchableOpacity
                     style={styles.buttonCenter}
-                    onPress={() => handleSelectRoute(3)}
+                    onPress={() => handleSelectRoute(buttons[2])}
                 >
                     <SvgXml xml={svgIcon({ name: 'clock', size: 22, color: selected === 3 ? ColorsScreen.background : ColorsText.black })} />
                 </TouchableOpacity>

@@ -13,6 +13,7 @@ import VertificationCodeScreen from '@screens/auth/register/VertificationCodeScr
 import VeritifiredSuccessScreen from '@screens/auth/vetifiredSuccess/VeritifiredSuccessScreen';
 import OTPCodeForgotScreen from '@screens/auth/forgotPassword/OTPCodeForgotScreen';
 import ResetPasswordScreen from '@screens/auth/forgotPassword/ResetPasswordScreen';
+import AnalysisScreen from '@screens/analysis/AnalysisScreen';
 
 const Stack = createStackNavigator();
 const authStack = createStackNavigator();
@@ -58,6 +59,10 @@ const StackMainNavigator = () => {
                 name={ContantsNavigator.HOME_SCREEN}
                 options={{ gestureEnabled: false }}
                 component={HomeScreen}
+            />
+            <Stack.Screen
+                name={ContantsNavigator.ANALYSIS_SCREEN}
+                component={AnalysisScreen}
             />
         </Stack.Navigator>
 
