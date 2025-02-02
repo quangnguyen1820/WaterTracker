@@ -1,14 +1,20 @@
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { width } from '@utils/constants'
 import { ColorsScreen, ColorsText } from '@themes/colors'
 import { ContantsNavigator } from '@navigation/ContantsNavigator'
 import { SvgXml } from 'react-native-svg'
 import { svgIcon } from '@assets/svg'
 import { typography } from '@styles/typography'
-import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
-export default function NavBottom() {
+interface NavBottomProps {
+    routeId: number
+}
+
+export default function NavBottom(props: NavBottomProps) {
+
+    const { routeId } = props
 
     const navigation = useNavigation<any>();
 
@@ -53,6 +59,17 @@ export default function NavBottom() {
             route: ContantsNavigator.HOME_SCREEN
         },
     ]
+
+    useFocusEffect(
+        useCallback(() => {
+            const itemFind = buttons.find(item => item.id === routeId)
+
+            if (itemFind) {
+                setSelected(itemFind.id)
+            }
+        }, [routeId])
+    )
+
 
     const handleSelectRoute = (button: buttonType) => {
         setSelected(button.id)

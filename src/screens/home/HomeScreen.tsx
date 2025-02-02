@@ -12,6 +12,8 @@ import svgChart from '@assets/svg/svgChart';
 import ButtonsW from '@components/Buttons/ButtonsW';
 import NavBottom from '@components/NavBottom';
 import { User } from '../../types/userTypes';
+import { NavBottomTypes } from '../../types/navBottomTypes';
+
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -129,7 +131,9 @@ const HomeScreen = () => {
                     </View>
                 </ScrollView>
             </View>
-            <NavBottom />
+            <NavBottom
+                routeId={NavBottomTypes.HOME}
+            />
         </SafeAreaView>
     )
 }
